@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,9 +10,4 @@
     <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" Version="5.0.7" />
     <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="obj\Debug\net5.0" />
-  </ItemGroup>
-
 </Project>
