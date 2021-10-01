@@ -1,0 +1,19 @@
+﻿@page "/profile"
+
+<AuthorizeView>
+    <Authorized>
+        @foreach (var claim in @context.User.Claims)
+        {
+            <p>The type is @claim.Type</p>
+            <p>The value is @claim.Value</p>
+            <br/>
+        }
+    </Authorized>
+    <NotAuthorized>
+        <p>Please, login</p>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    
+}

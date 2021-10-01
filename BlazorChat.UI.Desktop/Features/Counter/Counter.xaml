@@ -1,0 +1,25 @@
+﻿<reactiveUi:ReactiveUserControl x:TypeArguments="counter:CounterViewModel" x:Class="BlazorChat.UI.Desktop.Features.Counter.Counter"
+                                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                xmlns:local="clr-namespace:BlazorChat.UI.Desktop.Features.Counter"
+                                xmlns:reactiveUi="http://reactiveui.net"
+                                xmlns:shared="clr-namespace:BlazorChat.UI.Shared;assembly=BlazorChat.UI.Shared"
+                                xmlns:counter="clr-namespace:BlazorChat.UI.Shared.Features.Counter;assembly=BlazorChat.UI.Shared"
+                                mc:Ignorable="d"
+                                d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" /> 
+            <RowDefinition Height="*" /> 
+            <RowDefinition Height="*" /> 
+        </Grid.RowDefinitions>
+        
+        <Label Margin="50">Counter</Label>
+        <Label Grid.Row="1" Margin="50" Name="CurrentCountLabel" />
+        
+        <Button Grid.Row="2" Margin="50" Name="IncrementButton">Click me</Button>
+    </Grid>
+</reactiveUi:ReactiveUserControl>
