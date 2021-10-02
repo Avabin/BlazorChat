@@ -1,7 +1,8 @@
 ﻿<component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Desktop With API" type="CompoundRunConfigurationType">
-    <toRun name="BlazorChat: IIS Express" type="LaunchSettings" />
-    <toRun name="BlazorChat.API.Functions" type="AzureFunctionsHost" />
+    <toRun name="BlazorChat.Desktop" type="DotNetProject" />
+    <toRun name="BlazorChat.API.Functions.SendMessage" type="AzureFunctionsHost" />
+    <toRun name="BlazorChat.API.Functions.Negociate" type="AzureFunctionsHost" />
     <method v="2" />
   </configuration>
 </component>

@@ -35,6 +35,11 @@ namespace BlazorChat.UI.Desktop.Features.MainWindow
                     .Select(_ => Unit.Default)
                     .InvokeCommand(ViewModel.NavigateForecastCommand)
                     .DisposeWith(d);
+                
+                ChatButton.Events().Click
+                    .Select(_ => Unit.Default)
+                    .InvokeCommand(ViewModel.NavigateChatCommand)
+                    .DisposeWith(d);
             });
         }
     }

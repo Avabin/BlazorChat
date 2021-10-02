@@ -35,7 +35,8 @@ namespace BlazorChat.UI.Shared
             builder.RegisterAssemblyTypes(_assemblies)
                 .Where(t => t.Name.Contains("ViewModel") && t.GetInterfaces().All(x => x != typeof(IScreen)))
                 .AsSelf()
-                .AsImplementedInterfaces();
+                .AsImplementedInterfaces()
+                .SingleInstance();
 
             builder.RegisterAssemblyTypes(_assemblies)
                 .Where(t => t.GetInterfaces().Any(x => x == typeof(IScreen)))

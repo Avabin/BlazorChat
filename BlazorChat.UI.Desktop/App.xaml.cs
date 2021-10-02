@@ -54,7 +54,7 @@ namespace BlazorChat.UI.Desktop
             using var scope = _host.Services.CreateScope();
 
             _logger = scope.ServiceProvider.GetRequiredService<ILogger<App>>();
-            _logger.LogInformation("Starting PierogiesBot Manager");
+            _logger.LogInformation("Starting BlazorChat");
             try
             {
                 _logger.LogTrace("Constructing new main window");

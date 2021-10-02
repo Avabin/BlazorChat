@@ -8,6 +8,9 @@
 
     <ItemGroup>
       <PackageReference Include="Autofac" Version="6.2.0" />
+      <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="5.0.10" />
+      <PackageReference Include="Microsoft.AspNetCore.SignalR.Client.Core" Version="5.0.10" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
       <PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="5.0.0" />
       <PackageReference Include="ReactiveUI" Version="16.2.6" />
