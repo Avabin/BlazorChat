@@ -31,8 +31,14 @@ namespace BlazorChat.UI.WebClient.Features.Chat
                     .DisposeWith(d);
             });
         }
+        
+        private void Callback()
+        {
+            var userName = ViewModel.Username;
+            var content = ViewModel.MessageContent;
+            var message = new Message(userName, content, DateTimeOffset.Now, "all");
 
-        private string _username;
-        private string _messageContent;
+            ViewModel.PostMessageCommand.Execute(message).Subscribe();
+        }
     }
 }
