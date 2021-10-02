@@ -5,6 +5,12 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Blazor.Extensions.Logging;
 using BlazorChat.UI.Shared;
+using BlazorChat.UI.Shared.Features.Navigation;
+using BlazorChat.UI.WebClient.Features;
+using BlazorChat.UI.WebClient.Features.Navigation;
+using Blazorise;
+using Blazorise.Bootstrap;
+using Blazorise.Icons.FontAwesome;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +29,14 @@ namespace BlazorChat.UI.WebClient
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             
+            builder.Services
+                .AddBlazorise( options =>
+                {
+                    options.ChangeTextOnKeyPress = false;
+                } )
+                .AddBootstrapProviders()
+                .AddFontAwesomeIcons();
+            
             var resolver = Locator.CurrentMutable;
             resolver.InitializeSplat();
             resolver.InitializeReactiveUI();
@@ -36,6 +50,8 @@ namespace BlazorChat.UI.WebClient
                 builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
                 options.ProviderOptions.DefaultAccessTokenScopes.Add("User.Read");
             });
+
+            builder.Services.AddNavigation<BlazorNavigationService>();
 
             builder.ConfigureContainer(new AutofacServiceProviderFactory(ConfigureContainer));
             

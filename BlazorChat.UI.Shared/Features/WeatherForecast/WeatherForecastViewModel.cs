@@ -14,24 +14,23 @@ namespace BlazorChat.UI.Shared.Features.WeatherForecast
 {
     public class WeatherForecastViewModel : RoutableViewModel
     {
+        private readonly IWeatherForecastService _weatherForecastService;
         public ObservableCollection<WeatherForecastDto> Forecasts { get; private set; }
         public ReactiveCommand<Unit, Unit> LoadForecastsCommand {get; private set;}
 
         private readonly string _dataPath = "sample-data/weather.json";
         private readonly IFileProvider _fileProvider;
 
-        public WeatherForecastViewModel(IScreen hostScreen, IFileProvider fileProvider) : base(hostScreen)
+        public WeatherForecastViewModel(IScreen hostScreen, IWeatherForecastService weatherForecastService) : base(hostScreen)
         {
-            _fileProvider = fileProvider;
+            _weatherForecastService = weatherForecastService;
             Forecasts = new ObservableCollection<WeatherForecastDto>();
             LoadForecastsCommand = ReactiveCommand.CreateFromTask(LoadForecasts);
         }
 
         private async Task LoadForecasts()
         {
-            await using var fileStream = _fileProvider.GetFileInfo(_dataPath).CreateReadStream();
-            
-            var forecasts = await JsonSerializer.DeserializeAsync<WeatherForecastDto[]>(fileStream);
+            var forecasts = await _weatherForecastService.GetForecastAsync();
             if (forecasts is null) return;
             
             Forecasts.Clear();

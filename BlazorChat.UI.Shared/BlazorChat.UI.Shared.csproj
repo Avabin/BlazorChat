@@ -19,4 +19,8 @@
       <ProjectReference Include="..\BlazorChat.Shared\BlazorChat.Shared.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Features\Chat\Models" />
+    </ItemGroup>
+
 </Project>

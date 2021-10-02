@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-using BlazorChat.UI.Shared.Features.Index;
+using BlazorChat.UI.Shared.Features.HostScreen;
 using ReactiveUI.Blazor;
 
 namespace BlazorChat.UI.WebClient.Features.Index

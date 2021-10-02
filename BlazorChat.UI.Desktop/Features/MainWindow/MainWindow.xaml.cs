@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Windows;
+using System.Windows.Controls.Primitives;
+using BlazorChat.UI.Shared.Features.HostScreen;
 using ReactiveUI;
 
 namespace BlazorChat.UI.Desktop.Features.MainWindow
@@ -11,7 +14,7 @@ namespace BlazorChat.UI.Desktop.Features.MainWindow
     /// </summary>
     public partial class MainWindow
     {
-        public MainWindow(MainWindowViewModel mainWindowViewModel)
+        public MainWindow(HostScreenViewModel mainWindowViewModel)
         {
             ViewModel = mainWindowViewModel;
             
@@ -23,13 +26,16 @@ namespace BlazorChat.UI.Desktop.Features.MainWindow
                 this.OneWayBind(ViewModel, x => x.Router, x => x.RoutedViewHost.Router)
                     .DisposeWith(d);
                 
-                
-            });
-        }
+                CounterButton.Events().Click
+                    .Select(_ => Unit.Default)
+                    .InvokeCommand(ViewModel.NavigateCounterCommand)
+                    .DisposeWith(d);
 
-        private void NavigateToCounter(object sender, RoutedEventArgs e)
-        {
-            ViewModel?.NavigateCommand?.Execute()?.Subscribe();
+                ForecastButton.Events().Click
+                    .Select(_ => Unit.Default)
+                    .InvokeCommand(ViewModel.NavigateForecastCommand)
+                    .DisposeWith(d);
+            });
         }
     }
 }

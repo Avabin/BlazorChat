@@ -24,33 +24,35 @@ namespace BlazorChat.UI.Shared
         }
         protected override void Load(ContainerBuilder builder)
         {
-            var allTypes = _assemblies.SelectMany(x => x.GetTypes()).ToArray();
-            var screen = allTypes.Single(t => t.IsAssignableTo(typeof(IScreen)));
-            var views = allTypes
-                .Where(t => t.IsAssignableTo(typeof(IViewFor<>)) && !t.IsAssignableTo(typeof(IScreen)))
-                .ToList();
-            var viewModels = allTypes
-                .Where(t => t.IsAssignableTo(typeof(ReactiveObject)) || t.IsAssignableTo(typeof(RoutableViewModel)))
-                .ToList();
-            var serviceTypes = allTypes
+            builder.RegisterAssemblyTypes(_assemblies)
+                .Where(t => t.GetInterfaces()
+                    .Any(
+                        i => i.IsGenericType
+                             && i.GetGenericTypeDefinition() == typeof(IViewFor<>)))
+                .AsSelf()
+                .AsImplementedInterfaces();
+
+            builder.RegisterAssemblyTypes(_assemblies)
+                .Where(t => t.Name.Contains("ViewModel") && t.GetInterfaces().All(x => x != typeof(IScreen)))
+                .AsSelf()
+                .AsImplementedInterfaces();
+
+            builder.RegisterAssemblyTypes(_assemblies)
+                .Where(t => t.GetInterfaces().Any(x => x == typeof(IScreen)))
+                .AsSelf()
+                .As<IScreen>()
+                .SingleInstance();
+
+            // Search for all types with [Service] attribute
+            var serviceTypes = _assemblies.SelectMany(x => x.GetTypes())
                 .Select(x => (attr: x.GetCustomAttributes(true).OfType<ServiceAttribute>().SingleOrDefault(), type: x))
                 .Where(x => x.attr is not null)
                 .ToList();
-            Console.WriteLine("Screen {0}", screen?.Name);
-            Console.WriteLine("Views: Count = {0}, Types = {1}", views.Count, string.Join(", ", views));
-            Console.WriteLine("ViewModels: Count = {0}, Types = {1}", viewModels.Count, string.Join(", ", viewModels));
-            Console.WriteLine("Services: Count = {0}, Types = {1}", serviceTypes.Count, string.Join(", ", serviceTypes));
 
-            builder.RegisterType(screen).AsSelf().AsImplementedInterfaces().SingleInstance();
+            Console.WriteLine("Registering {0} services from autodiscovery", serviceTypes.Count);
 
-            foreach (var type in views.Concat(viewModels))
-            {
-                builder.RegisterType(type).AsSelf().AsImplementedInterfaces().SingleInstance();
-            }
-
-
+            // Register those types with respect to defined lifetime
             foreach (var (attr, type) in serviceTypes)
-            {
                 switch (attr!.Lifetime)
                 {
                     case ServiceLifetime.Singleton:
@@ -65,7 +67,6 @@ namespace BlazorChat.UI.Shared
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
-            }
 
             base.Load(builder);
         }

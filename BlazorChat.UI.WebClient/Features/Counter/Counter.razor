@@ -1,15 +1,8 @@
 @page "/counter"
 @inherits ReactiveUI.Blazor.ReactiveComponentBase<BlazorChat.UI.Shared.Features.Counter.CounterViewModel>
 
-<AuthorizeView>
-    <Authorized>
-        <h1>Counter</h1>
-            
-        <p>Current count: @ViewModel?.CurrentCount</p>
-        
-        <button class="btn btn-primary" @onclick="() => ViewModel?.IncrementCommand.Execute().Subscribe()">Click me</button>
-    </Authorized>
-    <NotAuthorized>
-        <p>Please, login</p>
-    </NotAuthorized>
-</AuthorizeView>
+<h1>Counter</h1>
+
+<p>Current count: @ViewModel?.CurrentCount</p>
+
+<button class="btn btn-primary" @onclick="() => ViewModel?.IncrementCommand.Execute().Subscribe()">Click me</button>

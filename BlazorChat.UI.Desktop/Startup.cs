@@ -1,4 +1,5 @@
 ﻿using System;
+using BlazorChat.UI.Shared.Features.Navigation;
 using BlazorChat.UI.Shared.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +26,8 @@ namespace BlazorChat.UI.Desktop
         {
             services.AddSingleton(MessageBus.Current);
             services.AddSingleton(_environment.ContentRootFileProvider);
+
+            services.AddNavigation();
 
             Locator.CurrentMutable.InitializeSplat();
             Locator.CurrentMutable.InitializeReactiveUI();

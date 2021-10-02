@@ -5,6 +5,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using BlazorChat.UI.Desktop.Features.MainWindow;
 using BlazorChat.UI.Shared;
+using BlazorChat.UI.Shared.Features.HostScreen;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -57,7 +58,7 @@ namespace BlazorChat.UI.Desktop
             try
             {
                 _logger.LogTrace("Constructing new main window");
-                MainWindow = scope.ServiceProvider.GetRequiredService<IViewFor<MainWindowViewModel>>() as Window;
+                MainWindow = scope.ServiceProvider.GetRequiredService<IViewFor<HostScreenViewModel>>() as Window;
 
             }
             catch (Exception e)

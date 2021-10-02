@@ -1,0 +1,7 @@
+﻿<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Desktop With API" type="CompoundRunConfigurationType">
+    <toRun name="BlazorChat: IIS Express" type="LaunchSettings" />
+    <toRun name="BlazorChat.API.Functions" type="AzureFunctionsHost" />
+    <method v="2" />
+  </configuration>
+</component>

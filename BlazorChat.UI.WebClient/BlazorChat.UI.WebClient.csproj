@@ -2,12 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
     <PackageReference Include="Blazor.Extensions.Logging" Version="2.0.4" />
     <PackageReference Include="Blazorise" Version="0.9.4.4" />
+    <PackageReference Include="Blazorise.Bootstrap" Version="0.9.4.4" />
+    <PackageReference Include="Blazorise.Components" Version="0.9.4.4" />
+    <PackageReference Include="Blazorise.DataGrid" Version="0.9.4.4" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.4.4" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.7" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="5.0.10" />

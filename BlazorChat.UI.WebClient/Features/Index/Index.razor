@@ -1,8 +1,19 @@
 ﻿@page "/"
-@inherits ReactiveUI.Blazor.ReactiveComponentBase<BlazorChat.UI.Shared.Features.Index.HostScreenViewModel>
+@inherits ReactiveUI.Blazor.ReactiveComponentBase<BlazorChat.UI.Shared.Features.HostScreen.HostScreenViewModel>
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+
+<button @onclick="@(() => ViewModel?.NavigateCounterCommand.Execute().Subscribe())">
+    Counter
+</button>
+
+<a href="counter">AAA</a>
+<a href="fetchdata">BBB</a>
+
+<button @onclick="@(() => ViewModel?.NavigateForecastCommand.Execute().Subscribe())">
+    Weather Forecast
+</button>
 
 <SurveyPrompt Title="How is Blazor working for you?" />

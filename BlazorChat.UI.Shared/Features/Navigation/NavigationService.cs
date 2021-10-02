@@ -6,7 +6,6 @@ using ReactiveUI;
 
 namespace BlazorChat.UI.Shared.Features.Navigation
 {
-    [Service(ServiceLifetime.Singleton)]
     public class NavigationService : INavigationService
     {
         private readonly IServiceProvider _container;
