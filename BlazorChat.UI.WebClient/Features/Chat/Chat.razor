@@ -1,0 +1,29 @@
+﻿@page "/Chat"
+@using BlazorChat.Shared.Features.Chat.Models
+@inherits ReactiveUI.Blazor.ReactiveComponentBase<BlazorChat.UI.Shared.Features.Chat.ChatViewModel>
+
+<Container>
+    <Row>
+        <Column>
+            <TextEdit @onchange="@(s => ViewModel.Username = s.Value as string)"/>
+        </Column>
+        <Column>
+            <Button readonly="@(!ViewModel.IsConnected)" @onclick="@(() => ViewModel.ConnectCommand.Execute().Subscribe())">
+                @(ViewModel.IsConnected ? "Connected" : "Connect")
+            </Button>
+        </Column>
+    </Row>
+    <Row>
+        <DataGrid TItem="Message" Data="@ViewModel.Messages"/>
+    </Row>
+    <Row>
+        <Column>
+            <TextEdit @onchange="@(s => ViewModel.MessageContent = s.Value as string)"/>
+        </Column>
+        <Column>
+            <Button @onclick="@(() => ViewModel.PostMessageCommand.Execute(new Message(ViewModel.MessageContent, ViewModel.Username, DateTimeOffset.Now, "all")).Subscribe())">
+                Send
+            </Button>
+        </Column>
+    </Row>
+</Container>

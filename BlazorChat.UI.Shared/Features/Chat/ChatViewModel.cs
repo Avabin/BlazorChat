@@ -23,6 +23,8 @@ namespace BlazorChat.UI.Shared.Features.Chat
         public ObservableCollection<Message> Messages => _chatService.Messages;
 
         [Reactive] public bool IsConnected { get; set; }
+        [Reactive] public string Username {get;set;}
+        [Reactive] public string MessageContent {get;set;}
 
         public ChatViewModel(IScreen hostScreen, IChatService chatService, ILogger<ChatViewModel> logger) : base(hostScreen)
         {

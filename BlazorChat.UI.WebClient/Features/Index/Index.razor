@@ -5,15 +5,20 @@
 
 Welcome to your new app.
 
-<button @onclick="@(() => ViewModel?.NavigateCounterCommand.Execute().Subscribe())">
-    Counter
-</button>
+<Row>
+    <button @onclick="@(() => ViewModel?.NavigateCounterCommand.Execute().Subscribe())">
+        Counter
+    </button>
+    <button @onclick="@(() => ViewModel?.NavigateForecastCommand.Execute().Subscribe())">
+        Weather Forecast
+    </button>
+    <button @onclick="@(() => ViewModel?.NavigateChatCommand.Execute().Subscribe())">
+        Chat
+    </button>
+</Row>
 
-<a href="counter">AAA</a>
-<a href="fetchdata">BBB</a>
 
-<button @onclick="@(() => ViewModel?.NavigateForecastCommand.Execute().Subscribe())">
-    Weather Forecast
-</button>
+
+
 
 <SurveyPrompt Title="How is Blazor working for you?" />

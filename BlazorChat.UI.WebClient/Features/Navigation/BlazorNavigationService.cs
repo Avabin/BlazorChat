@@ -13,14 +13,15 @@ namespace BlazorChat.UI.WebClient.Features.Navigation
 {
     public class BlazorNavigationService : INavigationService, IDisposable
     {
-        private readonly IList<IRoutableViewModel> _viewModels;
+        private readonly Lazy<IEnumerable<IRoutableViewModel>> _viewModels;
+        private IEnumerable<IRoutableViewModel> ViewModels => _viewModels.Value;
         private readonly NavigationManager _navigationManager;
         private readonly IServiceProvider _serviceProvider;
         private readonly ILogger<BlazorNavigationService> _logger;
         private readonly CompositeDisposable _disposables;
         public RoutingState Router { get; }
 
-        public BlazorNavigationService(IList<IRoutableViewModel> viewModels, NavigationManager navigationManager, IServiceProvider serviceProvider, ILogger<BlazorNavigationService> logger)
+        public BlazorNavigationService(Lazy<IEnumerable<IRoutableViewModel>> viewModels, NavigationManager navigationManager, IServiceProvider serviceProvider, ILogger<BlazorNavigationService> logger)
         {
             _viewModels = viewModels;
             _navigationManager = navigationManager;
@@ -58,7 +59,7 @@ namespace BlazorChat.UI.WebClient.Features.Navigation
         private IObservable<IRoutableViewModel> Navigate<T>(ReactiveCommandBase<IRoutableViewModel, IRoutableViewModel> navigateCommand)
             where T : IRoutableViewModel
         {
-            var vm = _viewModels.OfType<T>().Single();
+            var vm = ViewModels.OfType<T>().Single();
 
             return navigateCommand.Execute(vm);
         }
