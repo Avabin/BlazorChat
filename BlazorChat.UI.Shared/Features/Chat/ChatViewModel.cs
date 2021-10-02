@@ -39,10 +39,10 @@ namespace BlazorChat.UI.Shared.Features.Chat
                 .Subscribe();
             
             ConnectCommand.ThrownExceptions
-                .Do(e => _logger.LogError(e, "Error while connecting to SignalR"))
+                .Do(e => _logger.LogError(e, "Error while connecting to SignalR. {Exception}", e))
                 .Subscribe();
             PostMessageCommand.ThrownExceptions
-                .Do(e => _logger.LogError(e, "Error while sending message!"))
+                .Do(e => _logger.LogError(e, "Error while sending message!. {Exception}", e))
                 .Subscribe();
         }
 
