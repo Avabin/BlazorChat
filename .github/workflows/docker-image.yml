@@ -27,10 +27,9 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.x
-      - name: Go to client folder
-        run: cd BlazorChat.UI.WebClient
       - name: Publish
         run: dotnet publish --verbosity normal -c Release -o release
+        working-directory: ./BlazorChat.UI.WebClient
       - name: Log in to the Container registry
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
@@ -47,7 +46,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
-          context: .
+          context: ./BlazorChat.UI.WebClient
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
