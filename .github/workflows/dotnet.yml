@@ -17,6 +17,8 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
+    - name: Go to blazor project
+      run: cd BlazorChat.UI.WebClient
     - name: Publish
       run: dotnet publish --verbosity normal -c Release -o release
     # changes the base-tag in index.html from '/' to 'BlazorGitHubPagesDemo' to match GitHub Pages repository subdirectory
