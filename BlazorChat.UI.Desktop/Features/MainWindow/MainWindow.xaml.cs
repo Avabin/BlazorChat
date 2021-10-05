@@ -5,6 +5,7 @@ using System.Reactive.Linq;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using BlazorChat.UI.Shared.Features.HostScreen;
+using Microsoft.Extensions.Logging;
 using ReactiveUI;
 
 namespace BlazorChat.UI.Desktop.Features.MainWindow
@@ -14,7 +15,7 @@ namespace BlazorChat.UI.Desktop.Features.MainWindow
     /// </summary>
     public partial class MainWindow
     {
-        public MainWindow(HostScreenViewModel mainWindowViewModel)
+        public MainWindow(HostScreenViewModel mainWindowViewModel, ILogger<MainWindow> logger)
         {
             ViewModel = mainWindowViewModel;
             
@@ -39,6 +40,20 @@ namespace BlazorChat.UI.Desktop.Features.MainWindow
                 ChatButton.Events().Click
                     .Select(_ => Unit.Default)
                     .InvokeCommand(ViewModel.NavigateChatCommand)
+                    .DisposeWith(d);
+                
+                AuthenticateButton.Events().Click
+                    .Select(_ => Unit.Default)
+                    .InvokeCommand(ViewModel.NavigateLoginCommand)
+                    .DisposeWith(d);
+                
+                Observable.Merge(
+                        ViewModel.NavigateCounterCommand.ThrownExceptions,
+                        ViewModel.NavigateChatCommand.ThrownExceptions,
+                        ViewModel.NavigateForecastCommand.ThrownExceptions,
+                        ViewModel.NavigateLoginCommand.ThrownExceptions)
+                    .Do(ex => logger.LogError(ex, "An error occured during navigation!"))
+                    .Subscribe()
                     .DisposeWith(d);
             });
         }

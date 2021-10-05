@@ -1,4 +1,6 @@
 ﻿using System;
+using BlazorChat.UI.Desktop.Features.Authentication;
+using BlazorChat.UI.Shared.Features.Authentication;
 using BlazorChat.UI.Shared.Features.Navigation;
 using BlazorChat.UI.Shared.Services;
 using Microsoft.Extensions.Configuration;
@@ -24,6 +26,9 @@ namespace BlazorChat.UI.Desktop
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddOptions();
+            services.AddAuthentication(Configuration);
+            
             services.AddSingleton(MessageBus.Current);
             services.AddSingleton(_environment.ContentRootFileProvider);
 

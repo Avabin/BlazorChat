@@ -14,6 +14,7 @@
             <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*" />
@@ -22,6 +23,7 @@
         <Button Grid.Row="0" Grid.Column="0" Margin="10" Name="CounterButton">Counter</Button>
         <Button Grid.Row="0" Grid.Column="1" Margin="10" Name="ForecastButton">Weather Forecast</Button>
         <Button Grid.Row="0" Grid.Column="2" Margin="10" Name="ChatButton">Chat</Button>
+        <Button Grid.Row="0" Grid.Column="3" Margin="10" Name="AuthenticateButton">Login</Button>
         <reactiveUi:RoutedViewHost Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
                           x:Name="RoutedViewHost"
                           HorizontalContentAlignment="Stretch"

@@ -13,6 +13,8 @@
       <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
       <PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="5.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
+      <PackageReference Include="Microsoft.Identity.Client" Version="4.36.2" />
       <PackageReference Include="ReactiveUI" Version="16.2.6" />
       <PackageReference Include="ReactiveUI.Fody" Version="16.2.6" />
       <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
