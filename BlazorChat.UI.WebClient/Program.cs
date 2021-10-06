@@ -4,9 +4,13 @@ using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Blazor.Extensions.Logging;
+using Blazorade.Msal.Configuration;
 using BlazorChat.UI.Shared;
+using BlazorChat.UI.Shared.Features.Authentication;
+using BlazorChat.UI.Shared.Features.Authentication.Services;
 using BlazorChat.UI.Shared.Features.Navigation;
 using BlazorChat.UI.WebClient.Features;
+using BlazorChat.UI.WebClient.Features.Authentication;
 using BlazorChat.UI.WebClient.Features.Navigation;
 using Blazorise;
 using Blazorise.Bootstrap;
@@ -28,16 +32,25 @@ namespace BlazorChat.UI.WebClient
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
-            
+
             builder.Services
-                .AddBlazorise( options =>
+                .AddBlazorise(options =>
                 {
                     options.ChangeTextOnKeyPress = false;
-                } )
+                })
                 .AddBootstrapProviders()
-                .AddFontAwesomeIcons();
-                
-            
+                .AddFontAwesomeIcons()
+                .AddMsalAuthentication(options =>
+                {
+                    builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
+                    options.ProviderOptions.DefaultAccessTokenScopes
+                        .Add("User.Read");
+                    options.ProviderOptions.LoginMode = "redirect";
+                });
+
+            builder.Services
+                .AddTransient<IAuthenticationService, AuthenticationService>()
+                .AddSingleton<AuthenticationDataStore>();
             
             var resolver = Locator.CurrentMutable;
             resolver.InitializeSplat();

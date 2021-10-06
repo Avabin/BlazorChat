@@ -31,7 +31,6 @@ namespace BlazorChat.UI.WebClient.Features.Chat
                     .DisposeWith(d);
             });
         }
-        
         private void Callback()
         {
             var userName = ViewModel.Username;

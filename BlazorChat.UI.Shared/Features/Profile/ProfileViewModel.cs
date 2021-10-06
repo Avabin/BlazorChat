@@ -9,11 +9,11 @@ namespace BlazorChat.UI.Shared.Features.Profile
 {
     public class ProfileViewModel : RoutableViewModel
     {
-        private readonly AuthenticationResultStore _authStore;
+        private readonly AuthenticationDataStore _authStore;
         
         [Reactive] public string Username { get; set; } = "";
         
-        public ProfileViewModel(IScreen hostScreen, AuthenticationResultStore authStore) : base(hostScreen)
+        public ProfileViewModel(IScreen hostScreen, AuthenticationDataStore authStore) : base(hostScreen)
         {
             _authStore = authStore;
 

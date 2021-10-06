@@ -1,0 +1,9 @@
+﻿@page "/profile"
+@inherits ReactiveUI.Blazor.ReactiveComponentBase<BlazorChat.UI.Shared.Features.Profile.ProfileViewModel>
+
+<Grid>
+    <Row>
+        <Label>Username:</Label>
+        <TextEdit ReadOnly="true" @bind-Text="ViewModel!.Username"></TextEdit>
+    </Row>
+</Grid>

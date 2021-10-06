@@ -28,7 +28,7 @@ namespace BlazorChat.UI.Shared.Features.Authentication.Services
         /// when authentication completes
         /// <see cref="AuthenticationResult"/>
         /// </returns>
-        IObservable<AuthenticationResult> Authenticate(IEnumerable<string> scopes);
+        IObservable<AuthenticationData> Authenticate(IEnumerable<string> scopes);
 
         /// <summary>
         /// Create authentication observable with default scope "User.Read"
@@ -39,6 +39,6 @@ namespace BlazorChat.UI.Shared.Features.Authentication.Services
         /// when authentication completes
         /// <see cref="AuthenticationResult"/>
         /// </returns>
-        IObservable<AuthenticationResult> Authenticate();
+        IObservable<AuthenticationData> Authenticate();
     }
 }

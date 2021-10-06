@@ -15,10 +15,7 @@ Welcome to your new app.
     <button @onclick="@(() => ViewModel?.NavigateChatCommand.Execute().Subscribe())">
         Chat
     </button>
+    <button @onclick="@(() => ViewModel?.NavigateLoginCommand.Execute().Subscribe())">
+        Login
+    </button>
 </Row>
-
-
-
-
-
-<SurveyPrompt Title="How is Blazor working for you?" />

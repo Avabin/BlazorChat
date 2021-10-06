@@ -12,13 +12,13 @@ namespace BlazorChat.UI.Shared.Features.Authentication
     public class AuthenticationViewModel : RoutableViewModel
     {
         private readonly IAuthenticationService _service;
-        private readonly AuthenticationResultStore _authStore;
+        private readonly AuthenticationDataStore _authStore;
         private readonly INavigationService _navigationService;
         public ReactiveCommand<Unit, Unit> AuthenticateCommand { get; set; }
 
         public AuthenticationViewModel(IScreen hostScreen, 
             IAuthenticationService service,
-            AuthenticationResultStore authStore, 
+            AuthenticationDataStore authStore, 
             ILogger<AuthenticationViewModel> logger,
             INavigationService navigationService)
         : base(hostScreen)
@@ -37,7 +37,7 @@ namespace BlazorChat.UI.Shared.Features.Authentication
 
         private IObservable<Unit> Authenticate() =>
             _service.Authenticate()
-                .Do(_authStore.SetAuthenticationResult)
+                .Do(_authStore.SetAuthenticationData)
                 // Map to void
                 .Select(_ => Unit.Default);
 

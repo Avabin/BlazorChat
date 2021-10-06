@@ -1,0 +1,5 @@
+﻿@page "/Authenticate"
+@using BlazorChat.UI.Shared.Features.Authentication
+@inherits ReactiveUI.Blazor.ReactiveComponentBase<BlazorChat.UI.Shared.Features.Authentication.AuthenticationViewModel>
+
+<Button @onclick="() => ViewModel.AuthenticateCommand.Execute().Subscribe()">Login with Microsoft account</Button>
